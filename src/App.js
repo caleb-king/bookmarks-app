@@ -5,6 +5,7 @@ import BookmarkList from './BookmarkList/BookmarkList';
 import BookmarksContext from './BookmarksContext';
 import Nav from './Nav/Nav';
 import config from './config';
+import EditBookmarkForm from './EditBookmarkForm/EditBookmarkForm';
 import './App.css';
 
 class App extends Component {
@@ -35,6 +36,8 @@ class App extends Component {
     })
   }
 
+  updateBookmark = () => {};
+
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
       method: 'GET',
@@ -61,6 +64,7 @@ class App extends Component {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
       deleteBookmark: this.deleteBookmark,
+      updateBookmark: this.updateBookmark,
     }
     return (
       <main className='App'>
@@ -76,6 +80,10 @@ class App extends Component {
               exact
               path='/'
               component={BookmarkList}
+            />
+            <Route
+              path='/edit/:bookmarkId'
+              component={EditBookmarkForm}
             />
           </div>
         </BookmarksContext.Provider>
